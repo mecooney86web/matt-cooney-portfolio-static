@@ -1,0 +1,76 @@
+{
+  "siteInfo": {
+    "name": "Matt Cooney",
+    "email": "mecooney86@gmail.com",
+    "location": "New York, NY",
+    "bio": "Video editor specializing in documentary, commercial, and narrative work. \n\nBased in New York City."
+  },
+  "featured": {
+    "id": "1768245781185",
+    "vimeoId": "651151362",
+    "title": "Video 1",
+    "description": ""
+  },
+  "gallery": [
+    {
+      "id": "1768245781185",
+      "vimeoId": "651151362",
+      "title": "Video 1",
+      "description": ""
+    },
+    {
+      "id": "1768245781192",
+      "vimeoId": "791203098",
+      "title": "Video 2",
+      "description": ""
+    },
+    {
+      "id": "1768245781200",
+      "vimeoId": "254570936",
+      "title": "Video 3",
+      "description": ""
+    },
+    {
+      "id": "1768245781206",
+      "vimeoId": "213593731",
+      "title": "Video 4",
+      "description": ""
+    },
+    {
+      "id": "1768245781213",
+      "vimeoId": "228898345",
+      "title": "Video 5",
+      "description": ""
+    },
+    {
+      "id": "1768245786330",
+      "vimeoId": "290397199",
+      "title": "Video 6",
+      "description": ""
+    },
+    {
+      "id": "1768245786337",
+      "vimeoId": "297586114",
+      "title": "Video 7",
+      "description": ""
+    },
+    {
+      "id": "1768245786343",
+      "vimeoId": "322328429",
+      "title": "Video 8",
+      "description": ""
+    },
+    {
+      "id": "1768245786350",
+      "vimeoId": "292334712",
+      "title": "Video 9",
+      "description": ""
+    },
+    {
+      "id": "1768245786356",
+      "vimeoId": "248599834",
+      "title": "Video 10",
+      "description": ""
+    }
+  ]
+}

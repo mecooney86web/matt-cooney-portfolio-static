@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Matt Cooney Portfolio</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div id="login-screen" class="login-screen">
+        <div class="login-box">
+            <h1>ADMIN LOGIN</h1>
+            <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                Enter your GitHub Personal Access Token to manage your portfolio.
+            </p>
+            <form id="login-form">
+                <input type="password" id="github-token" placeholder="GitHub Token" required autocomplete="off">
+                <button type="submit">LOGIN</button>
+            </form>
+            <p id="login-error" class="error"></p>
+            <details style="margin-top: 20px; font-size: 12px; color: #666;">
+                <summary style="cursor: pointer;">How to get a GitHub token?</summary>
+                <ol style="margin: 10px 0; padding-left: 20px;">
+                    <li>Go to GitHub → Settings → Developer settings → Personal access tokens</li>
+                    <li>Click "Generate new token (classic)"</li>
+                    <li>Give it a name like "Portfolio Admin"</li>
+                    <li>Select scope: <strong>repo</strong> (Full control of private repositories)</li>
+                    <li>Click "Generate token" and copy it</li>
+                    <li>Paste it here to log in</li>
+                </ol>
+            </details>
+        </div>
+    </div>
+
+    <div id="admin-panel" class="admin-panel" style="display: none;">
+        <header>
+            <h1>MATT COONEY PORTFOLIO ADMIN</h1>
+            <button id="logout-btn" class="btn-secondary">LOGOUT</button>
+        </header>
+
+        <main>
+            <section class="site-info-section">
+                <h2>SITE INFORMATION</h2>
+                <form id="site-info-form">
+                    <div class="form-group">
+                        <label for="site-name">Name *</label>
+                        <input type="text" id="site-name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="site-email">Email *</label>
+                        <input type="email" id="site-email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="site-location">Location *</label>
+                        <input type="text" id="site-location" placeholder="City, State" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="site-bio">Bio *</label>
+                        <textarea id="site-bio" placeholder="Your professional bio" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">UPDATE SITE INFO</button>
+                </form>
+            </section>
+
+            <section class="featured-section">
+                <h2>FEATURED VIDEO</h2>
+                <div id="featured-video" class="featured-video-display">
+                    <p class="empty-state">No featured video selected</p>
+                </div>
+            </section>
+
+            <section class="add-video-section">
+                <h2>ADD NEW VIDEO</h2>
+                <form id="add-video-form">
+                    <div class="form-group">
+                        <label for="vimeo-id">Vimeo ID *</label>
+                        <input type="text" id="vimeo-id" placeholder="e.g., 123456789" required>
+                        <small>Enter only the numeric ID from the Vimeo URL</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title (optional)</label>
+                        <input type="text" id="title" placeholder="Video title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description (optional)</label>
+                        <textarea id="description" placeholder="Video description" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">ADD VIDEO</button>
+                </form>
+            </section>
+
+            <section class="gallery-section">
+                <h2>VIDEO GALLERY</h2>
+                <p class="helper-text">Drag and drop videos to reorder</p>
+                <div id="video-list" class="video-list">
+                    <!-- Videos will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <!-- Edit Video Modal -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>EDIT VIDEO</h2>
+            <form id="edit-video-form">
+                <input type="hidden" id="edit-video-id">
+                <div class="form-group">
+                    <label for="edit-title">Title</label>
+                    <input type="text" id="edit-title" placeholder="Video title">
+                </div>
+                <div class="form-group">
+                    <label for="edit-description">Description</label>
+                    <textarea id="edit-description" placeholder="Video description" rows="3"></textarea>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button type="submit" class="btn-primary">SAVE</button>
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">CANCEL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/github-api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
