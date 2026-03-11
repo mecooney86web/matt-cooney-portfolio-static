@@ -17,19 +17,20 @@ export async function onRequestGet(context) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
   }
   try {
-    const res = await fetch(
+    const apiRes = await fetch(
       `${GITHUB_API}/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${DATA_PATH}`,
       {
         headers: {
           Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-          Accept: 'application/vnd.github.v3+json'
+          Accept: 'application/vnd.github.v3+json',
+          'User-Agent': 'matt-cooney-portfolio-admin'
         }
       }
     );
-    if (!res.ok) {
-      throw new Error(`GitHub error: ${res.status} ${res.statusText}`);
+    if (!apiRes.ok) {
+      throw new Error(`GitHub API error: ${apiRes.status} ${apiRes.statusText}`);
     }
-    const fileData = await res.json();
+    const fileData = await apiRes.json();
     const data = JSON.parse(atob(fileData.content));
     data._sha = fileData.sha;
     return new Response(JSON.stringify(data), { headers: corsHeaders });
@@ -59,7 +60,8 @@ export async function onRequestPut(context) {
         headers: {
           Authorization: `Bearer ${env.GITHUB_TOKEN}`,
           Accept: 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'User-Agent': 'matt-cooney-portfolio-admin'
         },
         body: JSON.stringify({ message: 'Update portfolio data from admin panel', content, sha })
       }
