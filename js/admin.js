@@ -20,7 +20,9 @@ async function loadDataFromWorker() {
     }
   });
   if (!response.ok) {
-    throw new Error(`Failed to load data: ${response.statusText}`);
+    const errorData = await response.json();
+    console.error('API error:', errorData);
+    throw new Error(`Failed to load data: ${errorData.details || response.statusText}`);
   }
   return await response.json();
 }

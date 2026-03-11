@@ -29,7 +29,8 @@ export async function onRequestGet(context) {
     data._sha = file.sha;
     return new Response(JSON.stringify(data), { headers: corsHeaders });
   } catch (e) {
-    return new Response(JSON.stringify({ error: 'Failed to fetch data' }), {
+    console.error('GET /api/data error:', e);
+    return new Response(JSON.stringify({ error: 'Failed to fetch data', details: e.message }), {
       status: 500, headers: corsHeaders
     });
   }
