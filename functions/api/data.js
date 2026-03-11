@@ -17,14 +17,21 @@ export async function onRequestGet(context) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
   }
   try {
-    // Use raw GitHub URL (works for public repos without auth)
-    const rawUrl = `https://raw.githubusercontent.com/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/main/${DATA_PATH}`;
-    const res = await fetch(rawUrl);
+    const res = await fetch(
+      `${GITHUB_API}/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${DATA_PATH}`,
+      {
+        headers: {
+          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json'
+        }
+      }
+    );
     if (!res.ok) {
       throw new Error(`GitHub error: ${res.status} ${res.statusText}`);
     }
-    const data = await res.json();
-    // Note: Without API access, we can't get SHA for updates. This is acceptable for read-only.
+    const fileData = await res.json();
+    const data = JSON.parse(atob(fileData.content));
+    data._sha = fileData.sha;
     return new Response(JSON.stringify(data), { headers: corsHeaders });
   } catch (e) {
     console.error('GET /api/data error:', e);
