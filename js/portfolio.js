@@ -3,6 +3,13 @@ const GITHUB_OWNER = 'mecooney86web'; // Your GitHub username
 const GITHUB_REPO = 'matt-cooney-portfolio-static'; // Your repo name
 const GITHUB_BRANCH = 'main'; // Branch name
 
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 // Load portfolio data and display
 async function loadPortfolio() {
     try {
@@ -26,13 +33,15 @@ async function loadPortfolio() {
 
 function displaySiteInfo(siteInfo) {
     document.querySelector('h1').textContent = siteInfo.name || 'MATT COONEY';
-    document.querySelector('.contact a').href = `mailto:${siteInfo.email || 'mecooney86@gmail.com'}`;
-    document.querySelector('.contact a').textContent = siteInfo.email || 'mecooney86@gmail.com';
+    const email = siteInfo.email || 'mecooney86@gmail.com';
+    document.querySelector('.contact a').href = `mailto:${email}`;
+    document.querySelector('.contact a').textContent = email;
     document.querySelector('.contact span:last-child').textContent = siteInfo.location || 'New York, NY';
 
-    // Preserve line breaks in bio
+    // Preserve line breaks in bio - escape HTML first to prevent XSS
     const bioText = siteInfo.bio || 'Video editor and cinematographer specializing in documentary, commercial, and narrative work. Based in New York City.';
-    document.querySelector('.header-bio p').innerHTML = bioText.replace(/\n/g, '<br>');
+    const escapedBio = escapeHtml(bioText);
+    document.querySelector('.header-bio p').innerHTML = escapedBio.replace(/\n/g, '<br>');
 }
 
 function displayFeaturedVideo(video) {
@@ -54,12 +63,12 @@ function displayGallery(videos) {
         const thumbnailUrl = video.customThumbnail || `https://vumbnail.com/${video.vimeoId}.jpg`;
         return `
             <div class="video-item">
-                <div class="video-container" data-vimeo-id="${video.vimeoId}" data-index="${index}" onclick="playGalleryVideo(this)">
+                <div class="video-container" data-vimeo-id="${escapeHtml(video.vimeoId)}" data-index="${index}" onclick="playGalleryVideo(this)">
                     <div class="video-thumbnail" style="background-image: url('${thumbnailUrl}')"></div>
                     <div class="video-play-button"></div>
                 </div>
-                ${video.title ? `<h3>${video.title}</h3>` : ''}
-                ${video.description ? `<p>${video.description}</p>` : ''}
+                ${video.title ? `<h3>${escapeHtml(video.title)}</h3>` : ''}
+                ${video.description ? `<p>${escapeHtml(video.description)}</p>` : ''}
             </div>
         `;
     }).join('');

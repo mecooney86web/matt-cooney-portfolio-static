@@ -8,6 +8,16 @@ let currentData = null;
 let draggedElement = null;
 
 // ============================================
+// Utility Functions
+// ============================================
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ============================================
 // Worker API Calls
 // ============================================
 
@@ -38,7 +48,9 @@ async function saveDataToWorker(data) {
     body: JSON.stringify(data)
   });
   if (!response.ok) {
-    throw new Error(`Failed to save data: ${response.statusText}`);
+    const errorData = await response.json();
+    console.error('API error:', errorData);
+    throw new Error(`Failed to save data: ${errorData.details || response.statusText}`);
   }
   return await response.json();
 }
@@ -171,9 +183,9 @@ function displayFeaturedVideo(video) {
     <div class="featured-video-card">
       <div class="thumbnail" style="background-image: url('${thumbnailUrl}')"></div>
       <div class="info">
-        <h3>${video.title || 'Untitled'}</h3>
-        <p>Vimeo ID: ${video.vimeoId}</p>
-        ${video.description ? `<p>${video.description}</p>` : ''}
+        <h3>${escapeHtml(video.title || 'Untitled')}</h3>
+        <p>Vimeo ID: ${escapeHtml(video.vimeoId)}</p>
+        ${video.description ? `<p>${escapeHtml(video.description)}</p>` : ''}
       </div>
       <button class="btn-danger" onclick="removeFeatured()">REMOVE FEATURED</button>
     </div>
@@ -197,9 +209,9 @@ function displayVideoList(videos) {
         <div class="drag-handle">⋮⋮</div>
         <div class="thumbnail" style="background-image: url('${thumbnailUrl}')"></div>
         <div class="info">
-          <h3>${video.title || 'Untitled'}</h3>
-          <p>Vimeo ID: ${video.vimeoId}</p>
-          ${video.description ? `<p>${video.description}</p>` : ''}
+          <h3>${escapeHtml(video.title || 'Untitled')}</h3>
+          <p>Vimeo ID: ${escapeHtml(video.vimeoId)}</p>
+          ${video.description ? `<p>${escapeHtml(video.description)}</p>` : ''}
         </div>
         <div class="actions">
           ${!isFeatured ? `<button class="btn-secondary" onclick="setFeatured('${video.id}')">SET FEATURED</button>` : '<span class="featured-badge">FEATURED</span>'}
