@@ -59,11 +59,15 @@ export async function onRequestPut(context) {
         body: JSON.stringify({ message: 'Update portfolio data from admin panel', content, sha })
       }
     );
+    if (!res.ok) {
+      throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+    }
     const result = await res.json();
     data._sha = result.content.sha;
     return new Response(JSON.stringify({ success: true, sha: result.content.sha }), { headers: corsHeaders });
   } catch (e) {
-    return new Response(JSON.stringify({ error: 'Failed to save data' }), {
+    console.error('PUT /api/data error:', e);
+    return new Response(JSON.stringify({ error: 'Failed to save data', details: e.message }), {
       status: 500, headers: corsHeaders
     });
   }
