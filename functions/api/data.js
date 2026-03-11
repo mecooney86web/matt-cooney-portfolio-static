@@ -21,6 +21,9 @@ export async function onRequestGet(context) {
       `${GITHUB_API}/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${DATA_PATH}`,
       { headers: { Authorization: `Bearer ${env.GITHUB_TOKEN}`, Accept: 'application/vnd.github.v3+json' } }
     );
+    if (!res.ok) {
+      throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+    }
     const file = await res.json();
     const data = JSON.parse(atob(file.content));
     data._sha = file.sha;
