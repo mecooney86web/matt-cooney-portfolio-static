@@ -19,7 +19,7 @@ export async function onRequestGet(context) {
   try {
     const res = await fetch(
       `${GITHUB_API}/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${DATA_PATH}`,
-      { headers: { Authorization: `Bearer ${env.GITHUB_TOKEN}`, Accept: 'application/vnd.github.v3+json' } }
+      { headers: { Accept: 'application/vnd.github.v3+json' } }
     );
     if (!res.ok) {
       throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
