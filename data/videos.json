@@ -13,15 +13,15 @@
   },
   "gallery": [
     {
-      "id": "1768245781185",
-      "vimeoId": "651151362",
-      "title": "Video 1",
-      "description": ""
-    },
-    {
       "id": "1768245781192",
       "vimeoId": "791203098",
       "title": "Video 2",
+      "description": ""
+    },
+    {
+      "id": "1768245781185",
+      "vimeoId": "651151362",
+      "title": "Video 1",
       "description": ""
     },
     {
