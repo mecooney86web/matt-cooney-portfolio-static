@@ -83,7 +83,7 @@ class GitHubStorage {
     static async getPublicData(owner, repo, branch = 'main') {
         try {
             const response = await fetch(
-                `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/data/videos.json`
+                `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/data/videos.json?t=${Date.now()}`
             );
 
             if (!response.ok) {
