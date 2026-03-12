@@ -1,58 +1,52 @@
 {
-    "siteInfo": {
-        "name": "Matt Cooney",
-        "email": "mecooney86@gmail.com",
-        "location": "New York, NY",
-        "bio": "Hello, Matt here. I just wanted to say thanks for visiting my website. I'm a video editor who specializes in documentary, commercial, and narrative work. Mostly, I just want to tell compelling stories."
+  "siteInfo": {
+    "name": "Matt Cooney",
+    "email": "mecooney86@gmail.com",
+    "location": "New York, NY",
+    "bio": "Hello, Matt here. I just wanted to say thanks for visiting my website. I'm a video editor who specializes in documentary, commercial, and narrative work. Mostly, I just want to tell compelling stories."
+  },
+  "featured": {
+    "id": "1768498800858",
+    "vimeoId": "1154744798",
+    "title": "LEXUS - Food & Wine (directors cut)",
+    "description": ""
+  },
+  "gallery": [
+    {
+      "id": "1768498800858",
+      "vimeoId": "1154744798",
+      "title": "LEXUS - Food & Wine (directors cut)",
+      "description": ""
     },
-    "featured": {
-        "id": "1768498800858",
-        "vimeoId": "1154744798",
-        "title": "LEXUS - Food & Wine (directors cut)",
-        "description": ""
+    {
+      "id": "1768499936754",
+      "vimeoId": "1091309724",
+      "title": "MANNERS - Dream In Color",
+      "description": ""
     },
-    "gallery": [
-        {
-            "id": "1768498800858",
-            "vimeoId": "1154744798",
-            "title": "LEXUS - Food & Wine (directors cut)",
-            "description": ""
-        },
-        {
-            "id": "1768499936754",
-            "vimeoId": "1091309724",
-            "title": "MANNERS - Dream In Color",
-            "description": ""
-        },
-        {
-            "id": "1768499861162",
-            "vimeoId": "1117554154",
-            "title": "THE WORKS",
-            "description": ""
-        },
-        {
-            "id": "1768509316862",
-            "vimeoId": "1131733346",
-            "title": "TABLES OF CONTENTS",
-            "description": ""
-        },
-        {
-            "id": "1768500581462",
-            "vimeoId": "1018997707",
-            "title": "MARLI - 10th",
-            "description": ""
-        },
-        {
-            "id": "1768245781200",
-            "vimeoId": "254570936",
-            "title": "COM TRUISE - ...of Your Fake Dimension",
-            "description": ""
-        },
-        {
-            "id": "1768245786350",
-            "vimeoId": "292334712",
-            "title": "\"...\"",
-            "description": ""
-        }
-    ]
+    {
+      "id": "1768499861162",
+      "vimeoId": "1117554154",
+      "title": "THE WORKS",
+      "description": ""
+    },
+    {
+      "id": "1768500581462",
+      "vimeoId": "1018997707",
+      "title": "MARLI - 10th",
+      "description": ""
+    },
+    {
+      "id": "1768245781200",
+      "vimeoId": "254570936",
+      "title": "COM TRUISE - ...of Your Fake Dimension",
+      "description": ""
+    },
+    {
+      "id": "1768245786350",
+      "vimeoId": "292334712",
+      "title": "\"...\"",
+      "description": ""
+    }
+  ]
 }
