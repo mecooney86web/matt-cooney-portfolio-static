@@ -47,6 +47,7 @@ function displaySiteInfo(siteInfo) {
 function displayFeaturedVideo(video) {
     const featuredSection = document.getElementById('featured');
     const thumbnailUrl = video.customThumbnail || `https://vumbnail.com/${video.vimeoId}.jpg`;
+    window.currentFeaturedId = video.id;
 
     featuredSection.innerHTML = `
         <h2>Featured</h2>
@@ -58,7 +59,9 @@ function displayFeaturedVideo(video) {
 
 function displayGallery(videos) {
     const gallerySection = document.getElementById('gallery');
-    gallerySection.innerHTML = videos.map((video, index) => {
+    const featuredId = window.currentFeaturedId;
+    const filteredVideos = videos.filter(v => v.id !== featuredId);
+    gallerySection.innerHTML = filteredVideos.map((video, index) => {
         const thumbnailUrl = video.customThumbnail || `https://vumbnail.com/${video.vimeoId}.jpg`;
         return `
             <div class="video-item">
