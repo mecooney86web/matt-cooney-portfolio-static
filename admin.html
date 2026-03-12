@@ -74,6 +74,11 @@
                         <label for="description">Description (optional)</label>
                         <textarea id="description" placeholder="Video description" rows="3"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="custom-thumbnail">Custom Thumbnail URL (optional)</label>
+                        <input type="url" id="custom-thumbnail" placeholder="https://example.com/image.jpg">
+                        <small>Leave blank to auto-generate from Vimeo</small>
+                    </div>
                     <button type="submit" class="btn-primary">ADD VIDEO</button>
                 </form>
             </section>
@@ -103,6 +108,11 @@
                 <div class="form-group">
                     <label for="edit-description">Description</label>
                     <textarea id="edit-description" placeholder="Video description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-custom-thumbnail">Custom Thumbnail URL</label>
+                    <input type="url" id="edit-custom-thumbnail" placeholder="https://example.com/image.jpg">
+                    <small>Leave blank to auto-generate from Vimeo</small>
                 </div>
                 <div style="display: flex; gap: 8px;">
                     <button type="submit" class="btn-primary">SAVE</button>

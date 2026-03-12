@@ -259,6 +259,7 @@ async function handleAddVideo(e) {
   const vimeoId = document.getElementById('vimeo-id').value.trim();
   const title = document.getElementById('title').value.trim();
   const description = document.getElementById('description').value.trim();
+  const customThumbnail = document.getElementById('custom-thumbnail').value.trim();
 
   if (!vimeoId) {
     showNotification('Vimeo ID is required', 'error');
@@ -271,6 +272,10 @@ async function handleAddVideo(e) {
     title: title || `Video ${currentData.gallery.length + 1}`,
     description: description || ''
   };
+
+  if (customThumbnail) {
+    newVideo.customThumbnail = customThumbnail;
+  }
 
   try {
     currentData.gallery.push(newVideo);
@@ -292,6 +297,7 @@ function editVideo(id) {
   document.getElementById('edit-video-id').value = video.id;
   document.getElementById('edit-title').value = video.title || '';
   document.getElementById('edit-description').value = video.description || '';
+  document.getElementById('edit-custom-thumbnail').value = video.customThumbnail || '';
 
   document.getElementById('edit-modal').style.display = 'flex';
 }
@@ -307,6 +313,7 @@ async function handleEditVideo(e) {
   const id = document.getElementById('edit-video-id').value;
   const title = document.getElementById('edit-title').value.trim();
   const description = document.getElementById('edit-description').value.trim();
+  const customThumbnail = document.getElementById('edit-custom-thumbnail').value.trim();
 
   const video = currentData.gallery.find(v => v.id === id);
   if (!video) return;
@@ -315,9 +322,20 @@ async function handleEditVideo(e) {
     video.title = title;
     video.description = description;
 
+    if (customThumbnail) {
+      video.customThumbnail = customThumbnail;
+    } else {
+      delete video.customThumbnail;
+    }
+
     if (currentData.featured && currentData.featured.id === id) {
       currentData.featured.title = title;
       currentData.featured.description = description;
+      if (customThumbnail) {
+        currentData.featured.customThumbnail = customThumbnail;
+      } else {
+        delete currentData.featured.customThumbnail;
+      }
     }
 
     await saveDataToWorker(currentData);
