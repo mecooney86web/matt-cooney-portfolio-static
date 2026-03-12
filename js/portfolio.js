@@ -52,7 +52,6 @@ function displayFeaturedVideo(video) {
         <h2>Featured</h2>
         <div class="video-container" data-vimeo-id="${video.vimeoId}" onclick="playFeaturedVideo('${video.vimeoId}')">
             <div class="video-thumbnail" style="background-image: url('${thumbnailUrl}')"></div>
-            <div class="video-play-button"></div>
         </div>
     `;
 }
@@ -65,7 +64,6 @@ function displayGallery(videos) {
             <div class="video-item">
                 <div class="video-container" data-vimeo-id="${escapeHtml(video.vimeoId)}" data-index="${index}" onclick="playGalleryVideo(this)">
                     <div class="video-thumbnail" style="background-image: url('${thumbnailUrl}')"></div>
-                    <div class="video-play-button"></div>
                 </div>
                 ${video.title ? `<h3>${escapeHtml(video.title)}</h3>` : ''}
                 ${video.description ? `<p>${escapeHtml(video.description)}</p>` : ''}
