@@ -54,6 +54,7 @@ function displayFeaturedVideo(video) {
         <div class="video-container" data-vimeo-id="${video.vimeoId}" onclick="playFeaturedVideo('${video.vimeoId}')">
             <div class="video-thumbnail" style="background-image: url('${thumbnailUrl}')"></div>
         </div>
+        ${video.title ? `<h3>${escapeHtml(video.title)}</h3>` : ''}
     `;
 }
 
